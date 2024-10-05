@@ -1,0 +1,15 @@
+.ant-modal {
+    max-width: 1000px !important;
+    /* Force the modal to be 1000px wide */
+    width    : 100% !important;
+}
+
+.ant-modal-body {
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.ant-table-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+}

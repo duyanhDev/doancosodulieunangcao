@@ -1,0 +1,13 @@
+.lecturer-container {
+  width: 100%;
+  /* hoặc bất kỳ chiều rộng tối đa nào bạn muốn */
+  margin: 0 auto;
+}
+
+.lecturer-container .input-group {
+  width: 80%;
+}
+
+.lecturer-container .btn-danger {
+  white-space: nowrap;
+}
