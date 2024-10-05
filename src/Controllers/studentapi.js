@@ -4,6 +4,7 @@ const {
   ReadOneStudent,
   UpdateStudent,
   DeleteStudent,
+  searchNameStudent,
 } = require("./../service/apistudent");
 
 const ReadStudentAPI = async (req, res) => {
@@ -105,10 +106,30 @@ const DeleteStudentAPI = async (req, res) => {
   }
 };
 
+const SearchNameStudentAPI = async (req, res) => {
+  try {
+    let { full_name } = req.body;
+    console.log(full_name);
+
+    const data = await searchNameStudent(full_name);
+
+    return res.status(200).json({
+      EC: 0,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      EC: 1,
+      message: "Lỗi trong quá trình tìm kiếm sinh viên",
+    });
+  }
+};
+
 module.exports = {
   ReadStudentAPI,
   CreateStudentsAPI,
   ReadOneStudentAPI,
   UpdateStudentAPI,
   DeleteStudentAPI,
+  SearchNameStudentAPI,
 };

@@ -69,10 +69,24 @@ const DeleteStudent = async (student_id) => {
     throw error; // Rethrow the error to handle it in the calling function
   }
 };
+
+const searchNameStudent = async (full_name) => {
+  try {
+    const query = "SELECT * FROM studens WHERE full_name ILIKE $1";
+    const values = [`%${full_name}%`];
+    const res = await pool.query(query, values);
+
+    return res.rows;
+  } catch (error) {
+    console.error("Error searching for students:", error);
+    throw error;
+  }
+};
 module.exports = {
   ReadStudent,
   CreateStudent,
   ReadOneStudent,
   UpdateStudent,
   DeleteStudent,
+  searchNameStudent,
 };

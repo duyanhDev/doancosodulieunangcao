@@ -3,6 +3,8 @@ const {
   ReadTeacher,
   ReadOneViewTeacher,
   UpdateTeacher,
+  SearchNameTeachCher,
+  DeleteTeacher,
 } = require("./../service/apiteacher");
 
 const CreateTeacherAPI = async (req, res) => {
@@ -71,9 +73,46 @@ const UpdateTeacherAPI = async (req, res) => {
     throw error;
   }
 };
+
+const SearchNameTeacherAPI = async (req, res) => {
+  try {
+    let { full_name } = req.body;
+
+    const data = await SearchNameTeachCher(full_name);
+
+    return res.status(200).json({
+      EC: 0,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      EC: 1,
+      message: "Lỗi trong quá trình tìm kiếm sinh viên",
+    });
+  }
+};
+
+const DeleteTeacherAPI = async (req, res) => {
+  try {
+    let { teacher_id } = req.params;
+    let data = await DeleteTeacher(teacher_id);
+    return res.status(200).json({
+      EC: 0,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      EC: 1,
+      message: "Lỗi trong quá trình xóa sinh viên",
+    });
+  }
+};
+
 module.exports = {
   CreateTeacherAPI,
   ReadTeacherAPI,
   ReadOneTeacherAPI,
   UpdateTeacherAPI,
+  SearchNameTeacherAPI,
+  DeleteTeacherAPI,
 };
